@@ -333,7 +333,7 @@ class AdbMessage(object):
             # None of the keys worked, so send a public key.
             msg = cls(
                 command=b'AUTH', arg0=AUTH_RSAPUBLICKEY, arg1=0,
-                data=rsa_keys[0].GetPublicKey() + b'\0')
+                data=rsa_keys[0].GetPublicKey().encode())
             msg.Send(usb)
             try:
                 cmd, arg0, unused_arg1, banner = cls.Read(
